@@ -1,65 +1,40 @@
-// import logo from './logo.svg';
-import React from 'react';
-import './App.css';
 
-// function App() {
- 
+ import React, { useState } from 'react';
+//  import logo from './logo.svg';
+ import './App.css';
+
+const bulbOnImg =
+   'https://www.freeiconspng.com/thumbs/lightbulb-png/light-bulb-png-bulb-png1247-12.png';
+   //" https://img.freepik.com/free-photo/depiction-human-brain-intellect-as-lightbulb_23-2150936749.jpg?t=st=1702577003~exp=1702580603~hmac=6012c7efcee2656b6cb9836aa4cbf3ace1a3a37063bbc28269f79dfc9857422a&w=740"
+const bulbOffImg =
+  'https://www.cahillheating.com/sites/cahillheating.com/files/LightBulb.jpg';
 
 function App() {
-  const name = "Hello world";
-  const abc = { name: "hello world object" };
-  const number = 12345;
-  const data = ["we", "are", "uniqe"];
-  const list = [
-    { name: "world no 1 car" },
-    { name: "world no 1 bike" },
-    { name: "world no 1 watch " },
-  ];
-  const complex = [
-    { company: "Mercedes", Jobs: ["Benz C-Class", "Benz E-Class"] },
-    { company: "LandCruiser", Jobs: ["Toyota Land Cruiser", " Prado"] }
-  ];
+  const [message, setMessage] = useState('Hello World');
+  const [bulbOn, setBulbOn] = useState(true);
+
+  const handleToggle = () => {
+    setMessage(message === 'Hello World' ? 'Hello Pakistan' : 'Hello World');
+  };
+  const handleBulbOn = () => {
+    setBulbOn(true);
+  };
+
+  const handleBulbOff = () => {
+    setBulbOn(false);
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <img src="https://media.shafaq.com/media/arcella/1697820719299.jpeg" className="App-logo" alt="logo" />
-        <p>{name}</p>
-        <p>{number}</p>
-        <p>{abc.name}</p>
-         <ol>
-           {data.map(function (item, index) {
-            return <li key={index}>{item}</li>;
-          })}
-        </ol>
-        <ul>
-          {list.map(function (item, index) {
-            return <li key={index}>{item.name}</li>;
-          })}
-        </ul>
-        <table border="3px">
-          <thead>
-            <tr>
-              <th>Company Name</th>
-              <th>Jobs</th>
-            </tr>
-          </thead>
-          <tbody>
-            {complex.map(function (item, index) {
-              return (
-                <tr key={index}>
-                  <td>{item.company}</td>
-                  <td>
-                    <ul>
-                      {item.Jobs.map(function (job, index) {
-                        return <li key={index}>{job}</li>;
-                      })}
-                    </ul>
-                  </td>
-                </tr>
-              );
-            })}
-          </tbody>
-        </table>
+        <div onClick={handleToggle}>
+          <p>{message}</p>
+        </div>
+        <img  width="200"  height="230"  alt="bulb" src={bulbOn ? bulbOnImg : bulbOffImg}/>  
+        <br />
+        <button onClick={handleToggle}>change text</button>
+        <button onClick={handleBulbOn}>Bulb On</button>
+        <button onClick={handleBulbOff}>Bulb Off</button>
       </header>
     </div>
   );
